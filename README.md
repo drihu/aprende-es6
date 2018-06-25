@@ -1,5 +1,9 @@
 # ECMAScript 2015 (ES6)
 
+<p align="center">
+  <img width="600" src="https://raw.githubusercontent.com/drihu/aprende-es6/master/img/es6.png">
+</p>
+
 > Traducido originalmente del repo [es6features](https://github.com/lukehoban/es6features).
 
 ## Introducción
