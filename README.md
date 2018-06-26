@@ -19,6 +19,7 @@ ES6 incluye las siguientes nuevas características:
 * [let + const](#let-+-const)
 * [ámbito](#ámbito)
 * [funciones flecha](#funciones-flecha)
+* [clases](#clases)
 
 ## Características de ECMAScript 6
 
@@ -69,7 +70,7 @@ bar();
 
 ### Funciones Flecha
 
-Las funciones flecha son funciones de rápida escritura usando la sintaxis `=>`. Son sintácticamente similares a la característica relacionada en C#, Java 8 y CoffeeScript. Admiten ambos cuerpos como bloques de sentencias que devuelven el valor de la expresión. A diferencia de las funciones clásicas, las funciones flecha comparten el mismo `this` que el código que los rodea.
+Las funciones flecha son funciones de rápida escritura usando la sintaxis `=>`. Son sintácticamente similares a la característica relacionada en C#, Java 8 y CoffeeScript. Admiten ambos cuerpos como bloques de sentencias que devuelven el valor de la expresión. A diferencia de las funciones tradicionales, las funciones flecha comparten el mismo `this` que el código que los rodea.
 
 ```javascript
 // Cuerpos de expresión
@@ -77,12 +78,12 @@ const odds = evens.map(v => v + 1);
 const nums = evens.map((v, i) => v + i);
 const pairs = evens.map(v => ({even: v, odd: v + 1}));
 
-// Cuerpos de sentencia
+// Cuerpos de declaración
 nums.forEach(v => {
   if (v % 5 === 0) fives.push(v);
 });
 
-// Palabra clave this
+// Palabra clave 'this'
 const bob = {
   name: 'Bob',
   friends: [],
@@ -93,3 +94,39 @@ const bob = {
 ```
 
 Más información: [MDN Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+### Clases
+
+Las clases en ES6 son un simple azúcar sobre el patrón OO (orientado a objetos) basado en prototipos. Tener una única forma declarativa conveniente hace que los patrones de clase sean más fáciles de usar y fomenta la interorperabilidad. Las clases admiten herencia basada en prototipos, llamadas al método 'super', instancias, constructores y métodos estáticos.
+
+```javascript
+class SkinnedMesh extends THREE.Mesh {
+  constructor(geometry, materials) {
+    super(geometry, materials);
+
+    this.idMatrix = SkinnedMesh.defaultMatrix();
+    this.bones = [];
+    this.boneMatrices = [];
+    //...
+  }
+
+  update(camera) {
+    //...
+    super.update();
+  }
+
+  get boneCount() {
+    return this.bones.length;
+  }
+
+  set matrixType(matrixType) {
+    this.idMatrix = SkinnedMesh[matrixType]();
+  }
+
+  static defaultMatrix() {
+    return new THREE.Matrix4();
+  }
+}
+```
+
+Más información: [MDN Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
