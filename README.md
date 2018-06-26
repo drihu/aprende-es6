@@ -31,15 +31,11 @@ Instrucciones con ámbito de bloque (un bloque es un conjunto de sentencias ence
 {
   let x;
   {
-    // ok, constante con ámbito de bloque
-    const x = 'sneaky';
-    // error, variable constante
-    x = 'bar';
+    const x = 'sneaky'; // ok, constante con ámbito de bloque
+    x = 'bar'; // error, variable constante
   }
-  // error, ya declarado en el bloque
-  let x = 'inner';
-  // ok, reasigna un valor a la variable
-  x = 'bat';
+  let x = 'inner'; // error, ya declarado en el bloque
+  x = 'bat'; // ok, reasigna un valor a la variable
 }
 ```
 
@@ -51,21 +47,17 @@ Las variables y funciones definidas dentro de un bloque (código entre `{` y `}`
 
 ```javascript
 for (let i = 0; i < arr.length; i++) {
-  // ok, i está definido para el bloque 'for'
-  let x = arr[i];
+  let x = arr[i]; // ok, i está definido para el bloque 'for'
 }
-// error, i no está definido
-console.log(i);
+console.log(i); // error, i no está definido
 
 function foo() {
   function bar() {
     return 'bar';
   }
-  // ok, bar está definido dentro de 'foo'
-  bar();
+  bar(); // ok, bar está definido dentro de 'foo'
 }
-// error, bar no está definido
-bar();
+bar(); // error, bar no está definido
 ```
 
 ### Funciones Flecha
@@ -73,12 +65,12 @@ bar();
 Las funciones flecha son funciones de rápida escritura usando la sintaxis `=>`. Son sintácticamente similares a la característica relacionada en C#, Java 8 y CoffeeScript. Admiten ambos cuerpos como bloques de sentencias que devuelven el valor de la expresión. A diferencia de las funciones tradicionales, las funciones flecha comparten el mismo `this` que el código que los rodea.
 
 ```javascript
-// Cuerpos de expresión
+// Cuerpos como expresión
 const odds = evens.map(v => v + 1);
 const nums = evens.map((v, i) => v + i);
 const pairs = evens.map(v => ({even: v, odd: v + 1}));
 
-// Cuerpos de declaración
+// Cuerpos como declaración
 nums.forEach(v => {
   if (v % 5 === 0) fives.push(v);
 });
